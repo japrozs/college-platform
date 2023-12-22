@@ -1,10 +1,11 @@
 import { NextRouter, useRouter } from "next/router";
 import { useEffect } from "react";
-import { useMeQuery } from "../generated/graphql";
+import { Exact, MeQuery, Query, useMeQuery } from "../generated/graphql";
+import { QueryResult } from "@apollo/client";
 
 // TODO: fix this, this is most probably wrong
-export const useIsAuth = () => {
-    const { data, loading } = useMeQuery();
+export const useIsAuth = (): ReturnType<typeof useMeQuery> => {
+    const { data, loading, ...rest } = useMeQuery();
     const router: NextRouter = useRouter();
     useEffect(() => {
         if (["/login", "/signup", "/"].includes(router.pathname)) {
@@ -29,4 +30,5 @@ export const useIsAuth = () => {
             router.replace("/verify", undefined, { shallow: false });
         }
     }, [loading, data, router]);
+    return { data, loading, ...rest };
 };

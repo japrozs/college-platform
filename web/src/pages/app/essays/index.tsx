@@ -69,6 +69,7 @@ export default function Essays() {
                                     <div className="ml-auto flex items-center font-medium text-gray-500">
                                         <p>{timeSince(essay.updatedAt)} ago</p>
                                     </div>
+                                    {/* TODO: implement this */}
                                     <RiDeleteBin6Line
                                         className={
                                             "text-xl hover:text-red-500 text-gray-500 ml-10"

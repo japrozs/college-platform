@@ -70,6 +70,7 @@ export const AddCollegeModal: React.FC<AddCollegeModalProps> = ({
                                     <div
                                         onClick={() => {
                                             setList([college, ...list]);
+                                            setQuery("");
                                             setOpen(false);
                                         }}
                                         key={idx}
