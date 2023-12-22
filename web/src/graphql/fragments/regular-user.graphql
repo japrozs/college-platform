@@ -1,0 +1,12 @@
+fragment RegularUser on User {
+    id
+    name
+    verified
+    email
+    essays {
+        ...RegularEssay
+    }
+    createdAt
+    updatedAt
+    __typename
+}

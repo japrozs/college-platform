@@ -1,0 +1,53 @@
+{
+    "name": "web",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "gen": "graphql-codegen --config codegen.yml"
+    },
+    "dependencies": {
+        "@apollo/client": "^3.8.8",
+        "@headlessui/react": "^1.7.17",
+        "@hello-pangea/dnd": "^16.5.0",
+        "@types/react-beautiful-dnd": "^13.1.7",
+        "deep-equal": "^2.2.3",
+        "dnd-core": "^16.0.1",
+        "formik": "^2.4.5",
+        "immutability-helper": "^3.1.1",
+        "next": "14.0.4",
+        "next-transition-bar": "^1.1.0",
+        "react": "^18",
+        "react-beautiful-dnd": "^13.1.0",
+        "react-contenteditable": "^3.3.7",
+        "react-dnd": "^16.0.1",
+        "react-dnd-html5-backend": "^16.0.1",
+        "react-dom": "^18",
+        "react-icons": "^4.12.0",
+        "react-motion": "^0.5.2",
+        "slate": "^0.101.4",
+        "slate-history": "^0.100.0",
+        "slate-react": "^0.101.3"
+    },
+    "devDependencies": {
+        "@graphql-codegen/cli": "^5.0.0",
+        "@graphql-codegen/typescript-operations": "^4.0.1",
+        "@graphql-codegen/typescript-react-apollo": "^4.1.0",
+        "@types/deep-equal": "^1.0.4",
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-beautiful-dnd": "^13.1.2",
+        "@types/react-dom": "^18",
+        "@types/react-icons": "^3.0.0",
+        "@types/react-motion": "^0.0.39",
+        "autoprefixer": "^10.0.1",
+        "eslint": "^8",
+        "eslint-config-next": "14.0.4",
+        "postcss": "^8",
+        "tailwindcss": "^3.3.0",
+        "typescript": "^5"
+    }
+}
