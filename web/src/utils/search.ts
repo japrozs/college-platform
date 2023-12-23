@@ -27,3 +27,22 @@ export const search = (
     }).slice(0, 5);
     return results;
 };
+
+// used in web/src/components/tasks/table.tsx for rendering kanban board cards
+export const matchFilter = (filter: string, text: string) => {
+    if (filter.trim().length == 0) {
+        return true;
+    }
+
+    if (
+        text
+            .trim()
+            .split(" ")
+            .join("")
+            .toLowerCase()
+            .includes(filter.trim().split(" ").join("").toLowerCase())
+    ) {
+        return true;
+    }
+    return false;
+};

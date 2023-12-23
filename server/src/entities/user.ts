@@ -39,6 +39,10 @@ export class User extends BaseEntity {
     @Column({ default: '{"list":[]}' })
     collegeList: string;
 
+    @Field()
+    @Column({ default: "{}" })
+    tasks: string;
+
     @Field(() => [Essay])
     @OneToMany(() => Essay, (essay) => essay.creator)
     essays: Essay[];

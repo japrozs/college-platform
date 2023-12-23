@@ -5,6 +5,7 @@ interface PillProps {
     borderColor?: string;
     textColor?: string;
     bgColor?: string;
+    noMargin?: boolean;
 }
 
 export const Pill: React.FC<PillProps> = ({
@@ -12,12 +13,15 @@ export const Pill: React.FC<PillProps> = ({
     borderColor,
     textColor,
     bgColor,
+    noMargin,
 }) => {
     return (
         <div
             className={`border ${
                 borderColor ? borderColor : "border-gray-800"
-            } ${bgColor && bgColor} ml-4 px-2 py-1 rounded-full`}
+            } ${bgColor && bgColor} ${
+                noMargin ? "" : "ml-4"
+            } px-2 py-1 rounded-full`}
         >
             <p
                 className={`text-xs font-semibold ${

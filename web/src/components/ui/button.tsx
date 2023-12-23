@@ -41,7 +41,7 @@ export const Button: React.FC<ButtonProps> = ({
                       } hover:opacity-90`
                     : "bg-dark-compliment border-gray-800 hover:bg-dark-compliment-hovered"
             } focus:ring-2 ${
-                disabled && "opacity-40 hover:opacity-40"
+                disabled && "opacity-40 disabled"
             } focus:ring-border-blue-100 transition-all text-smol py-1.5 w-full rounded-md border  ${className}`}
             {...props}
         >

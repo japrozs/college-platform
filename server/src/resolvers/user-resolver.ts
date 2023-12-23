@@ -280,6 +280,18 @@ export class UserResolver {
 
     @UseMiddleware(isAuth)
     @Mutation(() => Boolean)
+    async updateTasks(@Arg("tasks") tasks: string, @Ctx() { req }: Context) {
+        await User.update(
+            { id: req.session.userId },
+            {
+                tasks,
+            }
+        );
+        return true;
+    }
+
+    @UseMiddleware(isAuth)
+    @Mutation(() => Boolean)
     async verifyUser(@Arg("code") code: string, @Ctx() { req }: Context) {
         const user: User = await User.findOne(req.session.userId);
         if (user.verificationCode === code) {

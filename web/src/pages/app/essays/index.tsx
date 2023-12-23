@@ -22,7 +22,7 @@ export default function Essays() {
     const createEssay = async () => {
         const essay = await createEssaymutation({
             variables: {
-                title: "😁 Untitled",
+                title: `😄 Untitled`,
             },
         });
         router.push(`/app/essays/${essay.data?.createEssay.id}`);

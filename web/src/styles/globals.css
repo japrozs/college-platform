@@ -108,3 +108,7 @@ input[data-autocompleted] {
     font-variation-settings: "wght" 450;
     letter-spacing: 0.0005em;
 }
+
+.disabled {
+    opacity: 0.4 !important;
+}

@@ -47,7 +47,7 @@ const main = async () => {
                 disableTouch: true,
             }),
             cookie: {
-                maxAge: 1000 * 60 * 60, // 1000 * 60 * 60 * 24 * 365 * 10, // 10 years
+                maxAge: 1000 * 60 * 60 * 24 * 365 * 10, // 1000 * 60 * 60 * 24 * 365 * 10, // 10 years
                 httpOnly: true,
                 secure: false,
                 domain: undefined,

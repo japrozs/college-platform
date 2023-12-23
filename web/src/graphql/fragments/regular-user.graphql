@@ -4,6 +4,7 @@ fragment RegularUser on User {
     verified
     email
     collegeList
+    tasks
     essays {
         ...RegularEssay
     }

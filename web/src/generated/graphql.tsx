@@ -46,6 +46,7 @@ export type Mutation = {
   updateCollegeList: Scalars['Boolean']['output'];
   updateEssay: Scalars['Boolean']['output'];
   updateName: Scalars['Boolean']['output'];
+  updateTasks: Scalars['Boolean']['output'];
   verifyUser: Scalars['Boolean']['output'];
 };
 
@@ -99,6 +100,11 @@ export type MutationUpdateNameArgs = {
 };
 
 
+export type MutationUpdateTasksArgs = {
+  tasks: Scalars['String']['input'];
+};
+
+
 export type MutationVerifyUserArgs = {
   code: Scalars['String']['input'];
 };
@@ -122,6 +128,7 @@ export type User = {
   essays: Array<Essay>;
   id: Scalars['String']['output'];
   name: Scalars['String']['output'];
+  tasks: Scalars['String']['output'];
   updatedAt: Scalars['String']['output'];
   verified: Scalars['Boolean']['output'];
 };
@@ -142,9 +149,9 @@ export type RegularErrorFragment = { __typename?: 'FieldError', field: string, m
 
 export type RegularEssayFragment = { __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string };
 
-export type RegularUserResponseFragment = { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null };
+export type RegularUserResponseFragment = { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null };
 
-export type RegularUserFragment = { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> };
+export type RegularUserFragment = { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> };
 
 export type CreateEssayMutationVariables = Exact<{
   title: Scalars['String']['input'];
@@ -166,7 +173,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
 
 export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -178,7 +185,7 @@ export type RegisterMutationVariables = Exact<{
 }>;
 
 
-export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
+export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
 
 export type UpdateCollegeListMutationVariables = Exact<{
   collegeList: Scalars['String']['input'];
@@ -196,6 +203,13 @@ export type UpdateEssayMutationVariables = Exact<{
 
 export type UpdateEssayMutation = { __typename?: 'Mutation', updateEssay: boolean };
 
+export type UpdateTasksMutationVariables = Exact<{
+  tasks: Scalars['String']['input'];
+}>;
+
+
+export type UpdateTasksMutation = { __typename?: 'Mutation', updateTasks: boolean };
+
 export type GetEssayQueryVariables = Exact<{
   id: Scalars['String']['input'];
 }>;
@@ -206,7 +220,7 @@ export type GetEssayQuery = { __typename?: 'Query', getEssay: { __typename?: 'Es
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeQuery = { __typename?: 'Query', me?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null };
+export type MeQuery = { __typename?: 'Query', me?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null };
 
 export const RegularErrorFragmentDoc = gql`
     fragment RegularError on FieldError {
@@ -231,6 +245,7 @@ export const RegularUserFragmentDoc = gql`
   verified
   email
   collegeList
+  tasks
   essays {
     ...RegularEssay
   }
@@ -475,6 +490,37 @@ export function useUpdateEssayMutation(baseOptions?: Apollo.MutationHookOptions<
 export type UpdateEssayMutationHookResult = ReturnType<typeof useUpdateEssayMutation>;
 export type UpdateEssayMutationResult = Apollo.MutationResult<UpdateEssayMutation>;
 export type UpdateEssayMutationOptions = Apollo.BaseMutationOptions<UpdateEssayMutation, UpdateEssayMutationVariables>;
+export const UpdateTasksDocument = gql`
+    mutation updateTasks($tasks: String!) {
+  updateTasks(tasks: $tasks)
+}
+    `;
+export type UpdateTasksMutationFn = Apollo.MutationFunction<UpdateTasksMutation, UpdateTasksMutationVariables>;
+
+/**
+ * __useUpdateTasksMutation__
+ *
+ * To run a mutation, you first call `useUpdateTasksMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateTasksMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateTasksMutation, { data, loading, error }] = useUpdateTasksMutation({
+ *   variables: {
+ *      tasks: // value for 'tasks'
+ *   },
+ * });
+ */
+export function useUpdateTasksMutation(baseOptions?: Apollo.MutationHookOptions<UpdateTasksMutation, UpdateTasksMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateTasksMutation, UpdateTasksMutationVariables>(UpdateTasksDocument, options);
+      }
+export type UpdateTasksMutationHookResult = ReturnType<typeof useUpdateTasksMutation>;
+export type UpdateTasksMutationResult = Apollo.MutationResult<UpdateTasksMutation>;
+export type UpdateTasksMutationOptions = Apollo.BaseMutationOptions<UpdateTasksMutation, UpdateTasksMutationVariables>;
 export const GetEssayDocument = gql`
     query getEssay($id: String!) {
   getEssay(id: $id) {
