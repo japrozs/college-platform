@@ -10,11 +10,10 @@ import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 import { COOKIE_NAME } from "./constants";
-import { User } from "./entities/user";
-import { expressIsAuth } from "./middleware/is-auth";
-import { UserResolver } from "./resolvers/user-resolver";
 import { Essay } from "./entities/essay";
+import { User } from "./entities/user";
 import { EssayResolver } from "./resolvers/essay-resolver";
+import { UserResolver } from "./resolvers/user-resolver";
 
 const main = async () => {
     const conn = await createConnection({
@@ -75,21 +74,6 @@ const main = async () => {
     apolloServer.applyMiddleware({
         app,
         cors: false,
-    });
-
-    app.get("/verify/:code", expressIsAuth, async (req, res) => {
-        const code = req.params.code;
-        const user: User = await User.findOne(req.session.userId);
-        if (user.verificationCode === code) {
-            await User.update(
-                { id: req.session.userId },
-                {
-                    verified: true,
-                }
-            );
-            return res.redirect("http://localhost:3000/app");
-        }
-        return res.redirect("http://localhost:3000/incorrect");
     });
 
     app.listen(parseInt(process.env.PORT), () => {

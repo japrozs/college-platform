@@ -14,21 +14,6 @@ export const useIsAuth = (): ReturnType<typeof useMeQuery> => {
             }
             return;
         }
-        if (router.pathname == "/verify") {
-            if (!loading && data?.me != null && data.me.verified) {
-                router.push("/app");
-            }
-        }
-        if (!loading && !data?.me) {
-            router.replace("/");
-        } else if (
-            !loading &&
-            data?.me &&
-            typeof router.query.code !== "string" &&
-            !data?.me?.verified
-        ) {
-            router.replace("/verify", undefined, { shallow: false });
-        }
     }, [loading, data, router]);
     return { data, loading, ...rest };
 };

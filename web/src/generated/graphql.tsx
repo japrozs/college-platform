@@ -130,7 +130,6 @@ export type User = {
   name: Scalars['String']['output'];
   tasks: Scalars['String']['output'];
   updatedAt: Scalars['String']['output'];
-  verified: Scalars['Boolean']['output'];
 };
 
 export type UserInput = {
@@ -149,9 +148,9 @@ export type RegularErrorFragment = { __typename?: 'FieldError', field: string, m
 
 export type RegularEssayFragment = { __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string };
 
-export type RegularUserResponseFragment = { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null };
+export type RegularUserResponseFragment = { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null };
 
-export type RegularUserFragment = { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> };
+export type RegularUserFragment = { __typename: 'User', id: string, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> };
 
 export type CreateEssayMutationVariables = Exact<{
   title: Scalars['String']['input'];
@@ -173,7 +172,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
 
 export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -185,7 +184,7 @@ export type RegisterMutationVariables = Exact<{
 }>;
 
 
-export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
+export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: string, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
 
 export type UpdateCollegeListMutationVariables = Exact<{
   collegeList: Scalars['String']['input'];
@@ -220,7 +219,7 @@ export type GetEssayQuery = { __typename?: 'Query', getEssay: { __typename?: 'Es
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeQuery = { __typename?: 'Query', me?: { __typename: 'User', id: string, name: string, verified: boolean, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null };
+export type MeQuery = { __typename?: 'Query', me?: { __typename: 'User', id: string, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> } | null };
 
 export const RegularErrorFragmentDoc = gql`
     fragment RegularError on FieldError {
@@ -242,7 +241,6 @@ export const RegularUserFragmentDoc = gql`
     fragment RegularUser on User {
   id
   name
-  verified
   email
   collegeList
   tasks

@@ -1,7 +1,6 @@
 fragment RegularUser on User {
     id
     name
-    verified
     email
     collegeList
     tasks

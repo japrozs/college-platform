@@ -1,28 +1,23 @@
-import {
-    Resolver,
-    Mutation,
-    Arg,
-    Field,
-    Ctx,
-    ObjectType,
-    Query,
-    UseMiddleware,
-} from "type-graphql";
-import { Context } from "../types";
-import { User } from "../entities/user";
 import argon2 from "argon2";
 import {
-    COOKIE_NAME,
-    FORGET_PASSWORD_PREFIX,
-    VERIFICATION_CODE_LENGTH,
-} from "../constants";
-import { UserInput } from "../schemas/user-input";
-import { validateRegister } from "../utils/validate-register";
-import { sendEmail } from "../utils/send-email";
-import { v4 } from "uuid";
+    Arg,
+    Ctx,
+    Field,
+    Mutation,
+    ObjectType,
+    Query,
+    Resolver,
+    UseMiddleware,
+} from "type-graphql";
 import { getConnection } from "typeorm";
-import crypto from "node:crypto";
+import { v4 } from "uuid";
+import { COOKIE_NAME, FORGET_PASSWORD_PREFIX } from "../constants";
+import { User } from "../entities/user";
 import { isAuth } from "../middleware/is-auth";
+import { UserInput } from "../schemas/user-input";
+import { Context } from "../types";
+import { sendEmail } from "../utils/send-email";
+import { validateRegister } from "../utils/validate-register";
 
 @ObjectType()
 export class FieldError {
@@ -152,9 +147,6 @@ export class UserResolver {
 
         const hashedPassword = await argon2.hash(options.password);
         let user;
-        const code = crypto
-            .randomBytes(VERIFICATION_CODE_LENGTH)
-            .toString("hex");
         try {
             const result = await getConnection()
                 .createQueryBuilder()
@@ -164,7 +156,6 @@ export class UserResolver {
                     name: options.name,
                     email: options.email,
                     password: hashedPassword,
-                    verificationCode: code,
                 })
                 .returning("*")
                 .execute();
@@ -187,11 +178,6 @@ export class UserResolver {
         const us = await User.findOne(user.id, {
             relations: ["essays"],
         });
-
-        sendEmail(
-            us.email,
-            `<a href="http://localhost:4000/verify/${code}">verify email</a>`
-        );
 
         return { user: us };
     }
@@ -288,21 +274,5 @@ export class UserResolver {
             }
         );
         return true;
-    }
-
-    @UseMiddleware(isAuth)
-    @Mutation(() => Boolean)
-    async verifyUser(@Arg("code") code: string, @Ctx() { req }: Context) {
-        const user: User = await User.findOne(req.session.userId);
-        if (user.verificationCode === code) {
-            await User.update(
-                { id: req.session.userId },
-                {
-                    verified: true,
-                }
-            );
-            return true;
-        }
-        return false;
     }
 }
