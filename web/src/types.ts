@@ -1,3 +1,5 @@
+import { IconType } from "react-icons/lib";
+
 export interface CollegeListItem {
     guid: string;
     badge: {
@@ -140,4 +142,18 @@ export interface Column {
 export interface Card {
     id: string;
     content: string;
+}
+
+export interface ResourceLinkType {
+    title: string;
+    url: string;
+}
+
+export interface ResourceType {
+    name: string;
+    description: string;
+    slug: string;
+    icon: IconType;
+    color: string;
+    links: ResourceLinkType[];
 }

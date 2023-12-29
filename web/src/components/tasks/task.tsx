@@ -126,26 +126,37 @@ export const Task: React.FC<TaskProps> = ({ data }) => {
                         />
                     </div>
                 </div>
-                <div className="flex h-full mt-3 overflow-x-scroll no-scrollbar">
-                    <DragDropContext
-                        onDragEnd={(result) =>
-                            onDragEnd(result, board, setBoard)
-                        }
-                    >
-                        {Object.entries(board).map(
-                            ([columnId, column], index) => (
-                                <Table
-                                    key={columnId}
-                                    columnId={columnId}
-                                    column={column as any}
-                                    setBoard={setBoard}
-                                    board={board}
-                                    filter={query}
-                                />
-                            )
-                        )}
-                    </DragDropContext>
-                </div>
+                {data.me?.tasks === "{}" ? (
+                    <>
+                        <p>
+                            click on the new table button to get started with
+                            tasks
+                        </p>
+                    </>
+                ) : (
+                    <>
+                        <div className="flex h-full mt-3 overflow-x-scroll no-scrollbar">
+                            <DragDropContext
+                                onDragEnd={(result) =>
+                                    onDragEnd(result, board, setBoard)
+                                }
+                            >
+                                {Object.entries(board).map(
+                                    ([columnId, column], index) => (
+                                        <Table
+                                            key={columnId}
+                                            columnId={columnId}
+                                            column={column as any}
+                                            setBoard={setBoard}
+                                            board={board}
+                                            filter={query}
+                                        />
+                                    )
+                                )}
+                            </DragDropContext>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );
